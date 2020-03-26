@@ -336,8 +336,8 @@ sudo tshark -i eth0 \
 tail -f /var/log/syslog | kafkacat -b raspberrypi:9092 -t syslog -z snappy
 ```
 3. work with KSQL to check tshark data in ccloud
-# work with KSQL
 ```bash
+# work with KSQL
 # Stop cluster before starting ksql
 ./stop.sh
 # start ksql server and connect to ccloud
