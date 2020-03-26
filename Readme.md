@@ -208,9 +208,8 @@ schema.registry.url=CCLOUDSR-URL
 confluent.monitoring.interceptor.ssl.endpoint.identification.algorithm=https
 confluent.monitoring.interceptor.sasl.mechanism=PLAIN
 confluent.monitoring.interceptor.security.protocol=SASL_SSL
-confluent.monitoring.interceptor.bootstrap.servers=pkc-4ygn6.europe-west3.gcp.confluent.cloud:9092
-confluent.monitoring.interceptor.sasl.jaas.config=confluent.monitoring.intercerity.plain.Plainconfluent.monitorind username=\"CCLOUD-API-KEY\" password=\"CCLOUD-API_SECRET\";
-# KSQL Server specific configuration
+confluent.monitoring.interceptor.bootstrap.servers=CCLOUD-BROKER:9092
+confluent.monitoring.interceptor.sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username=\"CCLOUD-API-KEY\" password=\"CCLOUD-API_SECRET\";
 producer.interceptor.classes=io.confluent.monitoring.clients.interceptor.MonitoringProducerInterceptor
 consumer.interceptor.classes=io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor
 ksql.streams.producer.retries=2147483647
@@ -218,7 +217,6 @@ ksql.streams.producer.confluent.batch.expiry.ms=9223372036854775807
 ksql.streams.producer.request.timeout.ms=300000
 ksql.streams.producer.max.block.ms=9223372036854775807
 ksql.streams.replication.factor=3
-ksql.internal.topic.rksql.internal.topic.rksql.internal.topic.rksql.internal.topic.rksql.internar KSQL Server
 ksql.schema.registry.basic.auth.credentials.source=USER_INFO
 ksql.schema.registry.basic.auth.user.info=CCLOUDSR-APIKEY:CCLOUDSR-APISECRET
 ksql.schema.registry.url=CCLOUDSR-URL" > ccloud_ksql.properties
