@@ -367,13 +367,90 @@ source ~/.bashrc
 # test terraform
 terraform version
 ```
+## More Apps, for a better iPad Developer experience
+It is time to think about a GUI Interface at my iPad to develop stuff. Visual Studio is my favorite tool for that.
+Unfortunately I installed the lite Rasperian version of an image, that mean there is only a terminal prompt. But that is not a problem, we can upgrade [see](https://raspberrytips.com/upgrade-raspbian-lite-to-desktop/).
+There a couple of different environments out there for the Raspberry PI. I took the Pixel Desktop developer by RPI org, it seems to be more stable.
+Do the installation:
+```bash
+ssh pi@raspberrypi
+sudo apt update
+sudo apt upgrade
+sudo apt dist-upgrade
+sudo reboot
+ssh pi@raspberrypi
+sudo apt install xserver-xorg
+sudo apt install raspberrypi-ui-mods
+sudo apt install lightdm
+sudo reboot
+ssh pi@raspberrypi
+```
+Also, it would make sense to install some tools like Chrome and as I said Visual Studion next.
+```bash
+sudo apt install chromium-browser
+```
+After this Visual Studio will be installed on Raspberry PI [see](https://pimylifeup.com/raspberry-pi-visual-studio-code/):
+```bash
+cd ~/software
+# install the correct GPG keys
+wget https://packagecloud.io/headmelted/codebuilds/gpgkey -O - | sudo apt-key add -
+#install Visual Studio Code
+curl -L https://raw.githubusercontent.com/headmelted/codebuilds/master/docs/installers/apt.sh | sudo bash
+# done now, you need remote desktop control. You can start code at any time by calling "code-oss" within a terminal.
+# Remote Desktop on RPI
+see https://pimylifeup.com/raspberry-pi-remote-desktop/
+# install xrdp. The xrdp software replicates Microsoft’s RDP protocol so that other remote desktop clients can connect to your device. The software package even works with Microsoft’s own remote desktop client built into Windows.
+sudo apt-get install xrdp
+```
+
+If you work on your Mac there is still a remote Desktop App available, use it to connect the Rasbperry PI Desktop. For the iPad I recommend to use a VNC Viewer for iPad.
+* APP VNC Viewer - Remote Desktop 
+* or Microsoft Remote Desktop (this is my choice)
+
+Now check your Raspberrry PI IP Adresses:
+```bash
+# get the local ip of raspberry pi
+hostname -I
+```
+In wlan hotspot mode with iPad use IP 10.55.0.1 and in lan mode use your router address.
+Use the Remotedesktop APP on your mac and connect via IP. Enter user PI and your choosen Password.
+![Remote Desktop to Raspberry PI](images/04_remoteDesktop2RPI.png)
+
+One tool is still missing. An Admin tool. That#s is makes total sense to install PI Admin [see](https://pimylifeup.com/raspberry-pi-webmin/)
+```bash
+# we will need to install all the required packages of Webmin.
+sudo apt-get install perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python
+cd ~/software
+wget http://prdownloads.sourceforge.net/webadmin/webmin_1.941_all.deb
+sudo dpkg --install webmin_1.941_all.deb
+rm webmin_1.941_all.deb
+hostname -I
+```
+Open a brower and login via IP on wlan iPad Hotspot 10.55.0.1 on lan the 192.-IP and open [https://192.X.X.X:10000](https://192.X.X.X:10000)
+Now, you have an WEB Admin GUI to control your Raspberry PI.
+
+After all new installation tasks on my Raspberry PI there is still enough space on the SDCard(in my case 64GB), only 9% used storage. Maybe you save some money and just buy a 32GB SDCard.
+```bash
+df -k
+Filesystem     1K-blocks    Used Available Use% Mounted on
+/dev/root       61112892 4600376  53998048   8% /
+devtmpfs         1867784       0   1867784   0% /dev
+tmpfs            1999880       0   1999880   0% /dev/shm
+tmpfs            1999880    8656   1991224   1% /run
+tmpfs               5120       4      5116   1% /run/lock
+tmpfs            1999880       0   1999880   0% /sys/fs/cgroup
+/dev/mmcblk0p1    258095   54399    203696  22% /boot
+tmpfs             399976       0    399976   0% /run/user/1000
+```
 
 ## Stopping the Raspberry PI
 To stop the raspberry pi use the short cut or doing a `shutdown -h now`.
 
 # Summary
-That's all. A cool box with a couple of tools helping to demoing at cusatomer sites.
-Some python tools and maybe supported arm docker images around kafka will follow.
+That's all. A cool box with a couple of tools helping to demoing at cusatomer sites. Having a real developer environment where you can run developements in Trains, Plane, whereever...
+There a couple of additional projects out there: Anaconda, and so much more.
+In my case I would add anaconda, some python tools and maybe supported arm docker images around kafka.
 
+So, happy coding...
 
 
